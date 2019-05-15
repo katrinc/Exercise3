@@ -9,17 +9,12 @@ import de.dis2018.util.Helper;
 /**
  * House-Bean
  */
-@Entity
-@Table(name = "House")
 public class House extends Estate {
 	
-    @Column(name = "floors")
 	private int floors;
     
-    @Column(name = "price")
 	private int price;
     
-    @Column(name = "garden")
 	private boolean garden;
 	
 	public House() {

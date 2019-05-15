@@ -14,24 +14,19 @@ import de.dis2018.util.Helper;
 /**
  * Contract-Bean
  */
-@Entity
-@Table(name = "contract")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Entity
+//@Table(name = "contract")
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Contract {
 	
-    @Column(name = "contractNo")
 	private int contractNo = -1;
     
-    @Column(name = "date")
 	private Date date;
     
-    @Column(name = "place")
 	private String place;
     
 	static int currentId = 0;
 	
-    @Id
-    @Column(name = "id")
 	int id;
     
 	Person contractPartner;

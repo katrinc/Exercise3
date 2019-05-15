@@ -10,18 +10,15 @@ import de.dis2018.util.Helper;
 /**
  * Purchase Contract-Bean
  */
-@Entity
-@Table(name = "PurchaseContract")
-@PrimaryKeyJoinColumn(name = "contractNO")
+//@Entity
+//@Table(name = "PurchaseContract")
+//@PrimaryKeyJoinColumn(name = "contractNO")
 public class PurchaseContract extends Contract {
 	
-    @Column(name = "noOfInstallments")
 	private int noOfInstallments;
     
-    @Column(name = "intrestRate")
 	private int intrestRate;
     
-    @Column(name = "house")
 	private House house;
 	
 	public PurchaseContract() {

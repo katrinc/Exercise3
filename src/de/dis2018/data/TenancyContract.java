@@ -12,21 +12,17 @@ import de.dis2018.util.Helper;
 /**
  * Tenancy Contract-Bean
  */
-@Entity
-@Table(name = "TenancyContract")
-@PrimaryKeyJoinColumn(name = "contractNO")
+//@Entity
+//@Table(name = "TenancyContract")
+//@PrimaryKeyJoinColumn(name = "contractNO")
 public class TenancyContract extends Contract {
 	
-    @Column(name = "startDate")
 	private Date startDate;
     
-    @Column(name = "duration")
     private int duration;
     
-    @Column(name = "additionalCosts")
 	private int additionalCosts;
     
-    @Column(name = "apartment") // TODO 
 	private Apartment apartment;
 
 	public TenancyContract() {
