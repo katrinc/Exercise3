@@ -17,14 +17,14 @@
         <property name="connection.driver_class">org.h2.Driver</property>
         
         <!-- Server mode -->
-        <property name="connection.url">jdbc:h2:tcp://localhost/./data/estatedb</property>
+        <property name="connection.url">jdbc:db2://vsisls4.informatik.uni-hamburg.de:50001/VSISP</property>
         
         <!-- Embedded in memory mode     
         <property name="connection.url">jdbc:h2:./data/estatedb</property>
         -->
           
-        <property name="connection.username">sa</property>
-        <property name="connection.password"/>
+        <property name="connection.username">visp47</property>
+        <property name="connection.password">BoHp4Qqy</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>

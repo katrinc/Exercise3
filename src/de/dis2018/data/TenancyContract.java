@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import de.dis2018.util.Helper;
@@ -13,6 +14,7 @@ import de.dis2018.util.Helper;
  */
 @Entity
 @Table(name = "TenancyContract")
+@PrimaryKeyJoinColumn(name = "contractNO")
 public class TenancyContract extends Contract {
 	
     @Column(name = "startDate")

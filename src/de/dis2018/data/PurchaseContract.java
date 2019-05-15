@@ -2,6 +2,7 @@ package de.dis2018.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import de.dis2018.util.Helper;
@@ -11,6 +12,7 @@ import de.dis2018.util.Helper;
  */
 @Entity
 @Table(name = "PurchaseContract")
+@PrimaryKeyJoinColumn(name = "contractNO")
 public class PurchaseContract extends Contract {
 	
     @Column(name = "noOfInstallments")

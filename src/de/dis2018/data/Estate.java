@@ -11,28 +11,14 @@ import de.dis2018.util.Helper;
  * estates-Bean
  */
 
-@Entity
-@Table(name = "Estate")
 public abstract class Estate {
 	
-	@Id
-    @Column(name = "id")
 	private int id = -1;
-    
-    @Column(name = "city")
 	private String city;
-    
-    @Column(name = "postalcode")
 	private int postalcode;
-    
-    @Column(name = "street")
-	private String street;
-    
-    @Column(name = "streetnumber")
-	private String streetnumber;
-    
-    @Column(name = "squareArea")
-	private int squareArea;
+   	private String street;
+    private String streetnumber;
+    private int squareArea;
     
 	private EstateAgent manager;
 	static int currentId = 0;
