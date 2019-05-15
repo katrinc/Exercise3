@@ -21,6 +21,7 @@ public abstract class Estate {
     private int squareArea;
     
 	private EstateAgent manager;
+	
 	static int currentId = 0;
 	
 	public Estate() {

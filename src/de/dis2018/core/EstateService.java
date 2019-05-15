@@ -61,7 +61,6 @@ public class EstateService {
 		session.close();
 		return estateAgent;
 			}
-	
 	/**
 	 * Find estate agent with the given login.
 	 * @param login The login of the estate agent
@@ -72,12 +71,14 @@ public class EstateService {
 		//Session session = sessionFactory.getCurrentSession();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();	
-		
-		EstateAgent estateAgent = (EstateAgent) session.get(EstateAgent.class,  login);
+		@SuppressWarnings("unchecked")
+		List<EstateAgent> agentList = (List<EstateAgent>) session.createQuery("from EstateAgent where login=?").setString(0, login)
+				.list();
+		//EstateAgent estateAgent = (EstateAgent) session.get(EstateAgent.class,  login);
 		session.getTransaction().commit();
 		
 		session.close();
-		return estateAgent;
+		return agentList.get(0);
 	}
 		
 	
@@ -91,7 +92,7 @@ public class EstateService {
 		session.beginTransaction();	
 		
 		@SuppressWarnings("unchecked")
-		List<EstateAgent> agentList = (List<EstateAgent>) session.createQuery("select * from EstateAgent")
+		List<EstateAgent> agentList = (List<EstateAgent>) session.createQuery("from EstateAgent")
 				.list();
 						
 		Set<EstateAgent> estateAgents = new HashSet<EstateAgent>(agentList);
@@ -198,7 +199,7 @@ public class EstateService {
 		session.beginTransaction();	
 		
 		@SuppressWarnings("unchecked")
-		List<Person> agentList = (List<Person>) session.createQuery("select * from Person")
+		List<Person> agentList = (List<Person>) session.createQuery("from Person")
 				.list();
 						
 		Set<Person> persons = new HashSet<Person>(agentList);
@@ -262,7 +263,7 @@ public class EstateService {
 		int id = ea.getId();
 		
 		@SuppressWarnings("unchecked")
-		List<House> houseList = (List<House>) session.createQuery("select * from House where EstateAgent.id = :id")
+		List<House> houseList = (List<House>) session.createQuery("from House where manager.id = :id")
 				.setParameter("id", id)
 				.list();
 		
@@ -357,8 +358,7 @@ public class EstateService {
 		int id = ea.getId();
 		
 		@SuppressWarnings("unchecked")
-		List<Apartment> apartmentList = (List<Apartment>) session.createQuery("select * from Apartment where EstateAgent.id = :id")
-				.setParameter("id", id)
+		List<Apartment> apartmentList = (List<Apartment>) session.createQuery("from Apartment where manager = ?").setEntity(0, ea)
 				.list();
 						
 		Set<Apartment> apartments = new HashSet<Apartment>(apartmentList);
@@ -510,7 +510,7 @@ public class EstateService {
 		int id = ea.getId();
 		
 		@SuppressWarnings("unchecked")
-		List<TenancyContract> tenancyListe = (List<TenancyContract>) session.createQuery("select * from TenancyContract where EstateAgent.id = :id")
+		List<TenancyContract> tenancyListe = (List<TenancyContract>) session.createQuery("from TenancyContract where manager.id = :id")
 				.setParameter("id", id)
 				.list();
 						
@@ -548,7 +548,7 @@ public class EstateService {
 		int id = ea.getId();
 		
 		@SuppressWarnings("unchecked")
-		List<PurchaseContract> purchaseListe = (List<PurchaseContract>) session.createQuery("select * from PurchaseContract where EstateAgent.id = :id")
+		List<PurchaseContract> purchaseListe = (List<PurchaseContract>) session.createQuery("from PurchaseContract where manager.id = :id")
 				.setParameter("id", id)
 				.list();
 						
@@ -587,7 +587,7 @@ public class EstateService {
 		int id = ea.getId();
 		
 		@SuppressWarnings("unchecked")
-		List<TenancyContract> tenancyListe = (List<TenancyContract>) session.createQuery("select * from TenancyContract where EstateAgent.id = :id")
+		List<TenancyContract> tenancyListe = (List<TenancyContract>) session.createQuery("from TenancyContract where manager.id = :id")
 				.setParameter("id", id)
 				.list();
 						
@@ -637,7 +637,7 @@ public class EstateService {
 		int id = ea.getId();
 		
 		@SuppressWarnings("unchecked")
-		List<PurchaseContract> pContractList = (List<PurchaseContract>) session.createQuery("select * from PurchaseContract where EstateAgent.id = :id")
+		List<PurchaseContract> pContractList = (List<PurchaseContract>) session.createQuery("from PurchaseContract where manager.id = :id")
 				.setParameter("id", id)
 				.list();
 		
@@ -760,6 +760,7 @@ public class EstateService {
 		h.setManager(m);
 		
 		session.save(h);
+		
 		
 		//TODO: This house is held in memory and the DB
 		// this.addHouse(h);
