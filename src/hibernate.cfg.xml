@@ -14,7 +14,8 @@
     <session-factory>
 
         <!-- Database connection settings -->
-        <property name="connection.driver_class">org.h2.Driver</property>
+        <!--   --><property name="connection.driver_class">org.h2.Driver</property> -->
+        <property name="connection.driver_class">com.ibm.db2.jcc.DB2Driver</property>
         
         <!-- Server mode -->
         <property name="connection.url">jdbc:db2://vsisls4.informatik.uni-hamburg.de:50001/VSISP</property>
