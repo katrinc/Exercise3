@@ -2,17 +2,35 @@ package de.dis2018.data;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import de.dis2018.util.Helper;
 
 /**
  * Contract-Bean
  */
+@Entity
+@Table(name = "contract")
 public abstract class Contract {
+	
+    @Column(name = "contractNo")
 	private int contractNo = -1;
+    
+    @Column(name = "date")
 	private Date date;
+    
+    @Column(name = "place")
 	private String place;
+    
 	static int currentId = 0;
+	
+    @Id
+    @Column(name = "id")
 	int id;
+    
 	Person contractPartner;
 	
 	public Contract() {

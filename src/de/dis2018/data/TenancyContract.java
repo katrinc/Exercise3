@@ -2,15 +2,29 @@ package de.dis2018.data;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import de.dis2018.util.Helper;
 
 /**
  * Tenancy Contract-Bean
  */
+@Entity
+@Table(name = "TenancyContract")
 public class TenancyContract extends Contract {
+	
+    @Column(name = "startDate")
 	private Date startDate;
-	private int duration;
+    
+    @Column(name = "duration")
+    private int duration;
+    
+    @Column(name = "additionalCosts")
 	private int additionalCosts;
+    
+    @Column(name = "apartment") // TODO 
 	private Apartment apartment;
 
 	public TenancyContract() {

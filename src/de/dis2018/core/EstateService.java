@@ -3,11 +3,13 @@ package de.dis2018.core;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.mapping.Array;
 
 import de.dis2018.data.House;
 import de.dis2018.data.Estate;
@@ -46,6 +48,15 @@ public class EstateService {
 	 * @return Agent with ID or null
 	 */
 	public EstateAgent getEstateAgentByID(int id) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();	
+		
+		EstateAgent estateAgent = (EstateAgent) session.get(EstateAgent.class,  id);
+		session.getTransaction().commit();
+		return estateAgent;
+
+		/*
 		Iterator<EstateAgent> it = estateAgents.iterator();
 		
 		while(it.hasNext()) {
@@ -55,8 +66,9 @@ public class EstateService {
 				return m;
 		}
 		
-		return null;
-	}
+		return null
+		*/
+			}
 	
 	/**
 	 * Find estate agent with the given login.
@@ -64,7 +76,18 @@ public class EstateService {
 	 * @return Estate agent with the given ID or null
 	 */
 	public EstateAgent getEstateAgentByLogin(String login) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();	
+		
+		EstateAgent estateAgent = (EstateAgent) session.get(EstateAgent.class,  login);
+		session.getTransaction().commit();
+		return estateAgent;
+	}
+		
+	/*
 		Iterator<EstateAgent> it = estateAgents.iterator();
+		
 		
 		while(it.hasNext()) {
 			EstateAgent m = it.next();
@@ -75,12 +98,26 @@ public class EstateService {
 		
 		return null;
 	}
+	*/
 	
 	/**
 	 * Returns all estateAgents
 	 */
 	public Set<EstateAgent> getAllEstateAgents() {
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();	
+		
+		@SuppressWarnings("unchecked")
+		List<EstateAgent> agentList = (List<EstateAgent>) session.createQuery("select * from EstateAgent")
+				.list();
+		
+		// EstateAgent[] agentArray = (EstateAgent[]) agentList.toArray();
+				
+		Set<EstateAgent> estateAgents = new HashSet<EstateAgent>(agentList);
+		
 		return estateAgents;
+		
 	}
 	
 	/**
@@ -106,7 +143,15 @@ public class EstateService {
 	 * @param ea The estate agent
 	 */
 	public void addEstateAgent(EstateAgent ea) {
-		estateAgents.add(ea);
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();	
+		
+        //Save the EstateAgent in database
+        session.save(ea);
+ 
+        //Commit the transaction
+        session.getTransaction().commit();
 	}
 	
 	/**
@@ -114,7 +159,17 @@ public class EstateService {
 	 * @param ea The estate agent
 	 */
 	public void deleteEstateAgent(EstateAgent ea) {
-		estateAgents.remove(ea);
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();	
+		
+        //Save the EstateAgent in database
+		session.delete(ea);
+ 
+        //Commit the transaction
+        session.getTransaction().commit();
+		
+		// estateAgents.remove(ea);
 	}
 	
 	/**
@@ -122,13 +177,25 @@ public class EstateService {
 	 * @param p The person
 	 */
 	public void addPerson(Person p) {
-		persons.add(p);
+		
+
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();	
+		
+        //Save the EstateAgent in database
+        session.save(p);
+ 
+        //Commit the transaction
+        session.getTransaction().commit();
+		// persons.add(p);
 	}
 	
 	/**
 	 * Returns all persons
 	 */
 	public Set<Person> getAllPersons() {
+		
+		
 		return persons;
 	}
 	

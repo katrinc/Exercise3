@@ -1,16 +1,32 @@
 package de.dis2018.data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import de.dis2018.util.Helper;
 
 
 /**
  * Apartment Bean
  */
+@Entity
+@Table(name = "apartment")
 public class Apartment extends Estate {
+
+    @Column(name = "floor")
 	private int floor;
+    
+    @Column(name = "rent")
 	private int rent;
+    
+    @Column(name = "rooms")
 	private int rooms;
+    
+    @Column(name = "balcony")
 	private boolean balcony;
+    
+    @Column(name = "kitchen")
 	private boolean kitchen;
 	
 	public Apartment() {

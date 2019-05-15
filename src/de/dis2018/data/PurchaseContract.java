@@ -1,13 +1,25 @@
 package de.dis2018.data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import de.dis2018.util.Helper;
 
 /**
  * Purchase Contract-Bean
  */
+@Entity
+@Table(name = "PurchaseContract")
 public class PurchaseContract extends Contract {
+	
+    @Column(name = "noOfInstallments")
 	private int noOfInstallments;
+    
+    @Column(name = "intrestRate")
 	private int intrestRate;
+    
+    @Column(name = "house")
 	private House house;
 	
 	public PurchaseContract() {
